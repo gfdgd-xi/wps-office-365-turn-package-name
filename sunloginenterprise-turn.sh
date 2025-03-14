@@ -70,6 +70,10 @@ _convert_loong64() {
 	    -i "$DEBDIR"/metadata/control
 	sed -e 's|^Package: SunloginEnterprise$|Package: sunloginenterprise|g' \
 	    -i "$DEBDIR"/metadata/control
+	sed -e 's|^Package: com.oray.sunlogin.remote$|Package: sunloginremote|g' \
+	    -i "$DEBDIR"/metadata/control
+	sed -e 's|^Package: SunloginRemote$|Package: sunloginremote|g' \
+	    -i "$DEBDIR"/metadata/control
 	if egrep '^Architecture: loong64$' "$DEBDIR"/metadata/control; then
 		if grep -q "Depends:" "$DEBDIR"/metadata/control; then
 	    	sed -i '/Depends:/ s/$/liblol, liblol-dkms,/' "$DEBDIR"/metadata/control
@@ -92,7 +96,7 @@ _convert_loong64() {
 
         #abinfo "Cleaning up: $1 ..."
         #rm -r "$DEBDIR"
-mv $1 ${BASEDIR}/${PKG_NAME}_${VERSION}_loong64.deb
+#mv $1 ${BASEDIR}/${PKG_NAME}_${VERSION}_loong64.deb
 	abinfo """Your requested package:
 
     $1
